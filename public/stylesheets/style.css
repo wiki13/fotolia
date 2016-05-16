@@ -1,6 +1,9 @@
 body {
+  position: relative;
   margin: 0;
   background-color:  #eae4e1;
+  height: 1080px;
+  width: 100vw;
 }
 
 #footer{
