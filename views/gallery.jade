@@ -1,0 +1,49 @@
+doctype html
+html
+  head
+    title Fotolia
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/liked-you_style.css')
+    link(href='http://fonts.googleapis.com/css?family=Aladin&subset=latin,latin-ext' rel='stylesheet' type='text/css')
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css")
+  body
+    #nav
+        ul
+          li 
+            a(href="/profile" ) mój profil
+          li
+            a(href="/photos" id="hire") zdjęcia
+          li
+            a(href="/liked-you") lubią cię
+          li
+            a(href="/message") wiadomości
+          li
+            a(href="/you-favourite") twoi ulubieni
+          li
+            a(href="/settings") ustawienia
+          li
+            a(href="/logout") wyloguj
+          li
+            h1 Fotolia
+            
+    #container
+          h1=title
+          div#arrow1.arrow
+            i(class="fa fa-arrow-left" aria-hidden="true")
+          div#arrow2.arrow
+            i(class="fa fa-arrow-right" aria-hidden="true") 
+          #box
+              -for(var i=0; i<photos.length; i++){
+                -var link = "/show?q="+photos[i].id_photo;
+                -var title = photos[i].title;
+                -var photo = 'background-image:  url("data:image/png;base64,'+photos[i].buffer+'"); background-position: center; background-repeat: no-repeat; background-size: cover;';
+                div
+                  a(href=link class="profile_picture" style=photo)
+                  a(href=link class="nick")=title
+              -}
+              
+    #footer
+        a(href="/O_Nas") O Nas
+        a(href="/Regulamin") Regulamin
+        a(href="/Cookies") Polityka plików cookies
+        a(href="/Kontakt_Pomoc") Kontakt i pomoc

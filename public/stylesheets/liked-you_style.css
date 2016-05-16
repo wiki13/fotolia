@@ -1,0 +1,83 @@
+#container {
+  position: absolute;
+  border-top: 5px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  border-style: solid;
+  border-color: #fa6f57;
+  width:800px;
+  height: 700px;
+  margin: auto;
+  top:0;
+  bottom: 10px;
+  right: 0;
+  left: 0;
+  background-color: #fff;
+}
+
+#container>h1 {
+  color: #fa6f57;
+  font-size: 30px;
+  font-family: monospace;
+  font-weight: 900;
+  margin-left: 20px;
+}
+.arrow{
+  position: absolute;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  text-align: center;
+}
+.arrow>i{
+    position: relative;
+    font-size: 30px;
+    top:10px;
+    color: #fff;
+}
+#arrow1{
+  top:0;
+  right: 70px;
+  background-color: #fa7d67;
+}
+#arrow2{
+  top:0;
+  right:0;
+  background-color: #4c4c4c;
+}
+
+#box{
+  background-color: #f2f2f3;
+  border: 1px solid #e6e6e6;
+  margin: 20px;
+  height: 86%;
+}
+
+#box>div{
+  width: 120px;
+  height: 140px;
+  float: left;
+  text-align: center;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.profile_picture{
+    position: relative;
+    border: 5px solid #fff;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    box-shadow: inset 2px 2px 5px #000;
+    float: left;
+    margin: auto;
+}
+.nick{
+  color: #fa6f57;
+  font-size: 20px;
+  font-family: monospace;
+  font-weight: 900;
+  text-decoration: none;
+}

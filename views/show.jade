@@ -1,0 +1,139 @@
+-var photo = 'background-image:  url("data:image/png;base64,'+photos[0].buffer+'"); background-position: center; background-repeat: no-repeat; background-size: contain;';
+-if(photos[0].comments.length>0){
+  -var comment = photos[0].comments[0].text;
+  -var nick = photos[0].comments[0].nick;
+  -var url = "/profile?q="+photos[0].comments[0].id_user_add;
+-}
+doctype html
+html
+  head
+    title Fotolia
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/photos_style.css')
+    link(href='http://fonts.googleapis.com/css?family=Aladin&subset=latin,latin-ext' rel='stylesheet' type='text/css')
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css")
+  body
+    #nav
+        ul
+          li 
+            a(href="/profile" ) mój profil
+          li
+            a(href="/photos" id="hire") zdjęcia
+          li
+            a(href="/liked-you") lubią cię
+          li
+            a(href="/message") wiadomości
+          li
+            a(href="/you-favourite") twoi ulubieni
+          li
+            a(href="/settings") ustawienia
+          li
+            a(href="/logout") wyloguj
+          li
+            h1 Fotolia
+    
+    #container 
+        h1#photo_title=photos[0].title
+        button.button#button1
+          a(href="/newphoto") dodaj komentarz
+        div#photo(style=photo)
+            -if(photos[0].comments.length>0){
+                div#komentarz
+                    a#nick(href=url)=nick
+                    p#comment=comment
+                    button#arrow3.transparent
+                      i(class="fa fa-arrow-left" aria-hidden="true")  
+                    -if(photos[0].comments.length==1){
+                      button#arrow4.transparent
+                        i(class="fa fa-arrow-right" aria-hidden="true")
+                    -}else{             
+                      button#arrow4.arrow
+                        i(class="fa fa-arrow-right" aria-hidden="true")
+                    -}
+           -}else{
+               div#komentarz.transparent
+                   a#nick(href=url)=nick
+                   p#comment=comment
+                   button#arrow3.transparent
+                     i(class="fa fa-arrow-left" aria-hidden="true")                
+                     -if(photos[0].comments.length==1){
+                       button#arrow4.transparent
+                         i(class="fa fa-arrow-right" aria-hidden="true")
+                     -}else{             
+                       button#arrow4.arrow
+                         i(class="fa fa-arrow-right" aria-hidden="true")
+                     -}
+          -} 
+  #frame2.transparent.frame
+      button.exit#exit2
+          p X 
+      div
+          form(method="post", action="", id="form1")
+          textarea(name="comment", placeholder="tekst komentarza",style="top:30px; height:150px;", form="form1")
+          button#send.button wyślij       
+    #footer
+        a(href="/O_Nas") O Nas
+        a(href="/Regulamin") Regulamin
+        a(href="/Cookies") Polityka plików cookies
+        a(href="/Kontakt_Pomoc") Kontakt i pomoc
+        
+    script(type='text/javascript').
+          var photos = !{JSON.stringify(photos)};
+          var countComment = 1 ;
+          var photo="";
+          
+          function nextComment(){
+                document.getElementById("nick").innerHTML=photos[0].comments[countComment].nick;
+                document.getElementById("nick").href="/profile?q="+photos[0].comments[countComment].id_user_add;
+                document.getElementById("comment").innerHTML=photos[0].comments[countComment].text;
+                countComment++;
+              if(photos[0].comments.length<countComment+1){
+                document.getElementById("arrow4").className="transparent";
+                countComment--;
+              }
+              if(document.getElementById("arrow3").className=="transparent"){
+                  document.getElementById("arrow3").className="arrow";
+              }
+          } 
+          
+          function previousComment(){
+              countComment--;
+              document.getElementById("nick").innerHTML=photos[0].comments[countComment].nick;
+              document.getElementById("nick").href="/profile?q="+photos[0].comments[countComment].id_user_add;
+              document.getElementById("comment").innerHTML=photos[0].comments[countComment].text;
+            if(1>countComment){
+              document.getElementById("arrow3").className="transparent";
+              countComment++;
+            }
+            if(document.getElementById("arrow4").className=="transparent"){
+                document.getElementById("arrow4").className="arrow";
+            }
+          }
+          
+          function frame(){
+            if(document.getElementById("frame2").className=="visible frame"){
+              document.getElementById("frame2").className="transparent frame";
+            }else{
+              document.getElementById("frame2").className="visible frame";
+            }
+          }
+          
+          function check(){
+            var formularz=document.forms[0];
+            var error = false;
+            var napis="";
+            if (formularz.comment.value == "" || formularz.comment.value.length<7 || formularz.comment.value.length>30 ){
+              napis += "komentarz nie może mieć mniej niż 7 znaków i nie więcej niż 30 \n"
+              error=true;
+            }
+            if (!error)
+              formularz.submit();
+            else
+              alert (napis);
+          }
+
+          document.getElementById("arrow4").addEventListener("click", nextComment);
+          document.getElementById("arrow3").addEventListener("click", previousComment);
+          document.getElementById("button1").addEventListener("click",frame);
+          document.getElementById("send").addEventListener("click",check);
+          document.getElementById("exit2").addEventListener("click", frame);

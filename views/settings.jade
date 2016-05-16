@@ -1,0 +1,52 @@
+doctype html
+html
+  head
+    title Fotolia
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/settings_style.css')
+    link(href='http://fonts.googleapis.com/css?family=Aladin&subset=latin,latin-ext' rel='stylesheet' type='text/css')
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css")
+  body
+    #nav
+        ul
+          li 
+            a(href="/profile") mój profil
+          li
+            a(href="/photos") zdjęcia
+          li
+            a(href="/liked-you") lubią cię
+          li
+            a(href="/message") wiadomości
+          li
+            a(href="/you-favourite") twoi ulubieni
+          li
+            a(href="/settings" id="hire") ustawienia
+          li
+            a(href="/logout") wyloguj
+          li
+            h1 Fotolia
+    
+    #container
+        div
+            p Panel Edycji
+            div
+                a(id="Register" href="/profile") > Mój profil
+        form(name="register_form",method="post", action="#")
+            div
+                input(type="password", name="password2", placeholder="Stare hasło")
+                input(type="password", name="password",placeholder="Nowe hasło")
+                input(type="mail", name="email",placeholder="Twój@mail.com")
+            div
+                input(type="text", name="nick",placeholder="Twój nick")
+                input(type="text", name="aboutyourself",placeholder="o sobie")
+                p Twoje zdjęcie profilowe
+                input(type="file", name="picture")
+        button#formbutton Edytuj
+        
+    #footer
+        a(href="/O_Nas") O Nas
+        a(href="/Regulamin") Regulamin
+        a(href="/Cookies") Polityka plików cookies
+        a(href="/Kontakt_Pomoc") Kontakt i pomoc
+  script(src="/javascripts/settings.js")  
+        

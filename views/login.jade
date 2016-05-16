@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title Fotolia
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/login_style.css')
+    link(href='http://fonts.googleapis.com/css?family=Aladin&subset=latin,latin-ext' rel='stylesheet' type='text/css')
+  body
+      div#title
+          h1 Fotolia
+      #container
+          div
+              p Panel Logowania
+              div
+                  a(id="Register" href="/register") > Rejestracja
+          form(name="login_form",method="post", action="#")
+              input(type="text", name="login", placeholder="nazwa użytkownika")
+              input(type="password", name="password",placeholder="hasło")
+              a(id="LostPassword" href="/lostPassword") Zapomniałeś hasła?
+              input(type="submit", value="Zaloguj")
+      #footer
+          a(href="/O_Nas") O Nas
+          a(href="/Regulamin") Regulamin
+          a(href="/Cookies") Polityka plików cookies
+          a(href="/Kontakt_Pomoc") Kontakt i pomoc

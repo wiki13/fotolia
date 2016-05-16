@@ -1,0 +1,149 @@
+- var ismessage=true;
+-if(tab[0].messages.length==0) ismessage=false; 
+doctype html
+html
+  head
+    title Fotolia
+    link(rel='stylesheet', href='/stylesheets/message_style.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(href='http://fonts.googleapis.com/css?family=Aladin&subset=latin,latin-ext' rel='stylesheet' type='text/css')
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css")
+  body
+    #nav
+        ul
+          li 
+            a(href="/profile") mój profil
+          li
+            a(href="/photos") zdjęcia
+          li
+            a(href="/liked-you") lubią cię
+          li
+            a(href="/message" id="hire") wiadomości
+          li
+            a(href="/you-favourite") twoi ulubieni
+          li
+            a(href="/settings") ustawienia
+          li
+            a(href="/logout") wyloguj
+          li
+            h1 Fotolia
+    #container
+          h1 Wiadomości
+          #box
+              if(ismessage==true)
+                #messages_container
+                    -for(var i=0; i<tab[0].messages.length;i++){
+                      div.message(id=i)
+                          a(href="profile?q="+tab[0].messages[i].id_user_send)=tab[0].messages[i].nick
+                          p(id=i)=tab[0].messages[i].title
+                    -}
+                #message
+                    a(href="profile?q="+tab[0].messages[0].id_user_send, id="nick")=tab[0].messages[0].nick
+                    div.text
+                      p#text=tab[0].messages[0].text
+                    p#date=tab[0].messages[0].date
+                    button#button1
+                      a odpisz
+                    button#button2
+                      a usuń
+              else
+                #messages_container
+                #message
+    #frame.transparent.frame
+        button.exit#exit1
+            p X
+        div
+            form(method="post", action="", id="form")
+                input(type="text", name="title", placeholder="Tytuł wiadomości")
+            textarea(type="text", name="text", placeholder="Treść wiadomości", form="form" )
+            button#send 
+                a Wyślij
+              
+    #footer
+        a(href="/O_Nas") O Nas
+        a(href="/Regulamin") Regulamin
+        a(href="/Cookies") Polityka plików cookies
+        a(href="/Kontakt_Pomoc") Kontakt i pomoc
+  
+    script(type='text/javascript').
+      var tab = !{JSON.stringify(tab)};
+      var divs=document.getElementsByClassName("message");
+      var actualymessage=0;
+      
+      for(var i=0; i<divs.length; i++){
+         divs[i].addEventListener("click",function(element){
+           actualymessage=parseInt(element.target.id)
+           document.getElementById("nick").innerHTML=tab[0].messages[parseInt(element.target.id)].nick;
+           document.getElementById("text").innerHTML=tab[0].messages[parseInt(element.target.id)].text;
+           document.getElementById("date").innerHTML=tab[0].messages[parseInt(element.target.id)].date;
+         });
+      }
+      
+      function check(){
+        var error=false;
+        var napis=""
+        var formularz=document.forms[0];
+        var textarea=document.getElementsByTagName("textarea")[0];
+        if(formularz.title.value=="" || textarea.value==""){
+          error=true;
+          napis+="nie uzupełniłeś wszystkich pól"
+        }else{
+          if(formularz.title.length<10){
+            error=true;
+            napis+="tytuł nie może mieć mniej niż 10 znaków \n";
+          }
+        }
+        if(error){
+          alert(napis)
+        }else{
+          var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", document.URL , true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("usersend="+tab[0].messages[actualymessage].id_user_send+"&title="+formularz.title.value+
+            "&text="+textarea.value);
+            xhttp.onreadystatechange= function(){
+              if(xhttp.readyState ==4 && xhttp.status==200){
+                document.getElementById("frame").className="transparent frame";
+                if(xhttp.responseText=="ok"){
+                  alert("wysłano wiadomość");
+                }
+                if(xhttp.responseText=="error"){
+                  alert("błąd w przesyłaniu wiadomości");
+                }
+              }
+          };
+        }
+      }
+      
+      function messagedelete(){
+        var xhttp = new XMLHttpRequest();
+          xhttp.open("POST", document.URL , true);
+          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhttp.send("date="+tab[0].messages[actualymessage].date+"&usersend="+tab[0].messages[actualymessage].id_user_send+"&delete=true");
+          xhttp.onreadystatechange= function(){
+            if(xhttp.readyState ==4 && xhttp.status==200){
+              document.getElementById("frame").className="transparent frame";
+              if(xhttp.responseText=="ok"){
+                alert("usunięto wiadomość");
+              }
+              if(xhttp.responseText=="error"){
+                alert("błąd w usuwaniu");
+              }
+              window.location.href = '/message';
+            }
+          };
+      }
+      
+      function exit(){
+        if(document.getElementById("frame").className=="visible frame"){
+          document.getElementById("frame").className="transparent frame";
+        }else{
+          document.getElementById("frame").className="visible frame";
+        }
+      }
+      
+      document.getElementById("send").addEventListener("click", check);
+      document.getElementById("exit1").addEventListener("click", exit);
+      document.getElementById("button1").addEventListener("click", exit);
+      document.getElementById("button2").addEventListener("click", messagedelete);
+      

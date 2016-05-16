@@ -1,0 +1,151 @@
+-var photography =  'background-image:  url("data:image/png;base64,'+user.photo+'"); background-position: center; background-repeat: no-repeat; background-size: cover;';
+doctype html
+html
+  head
+    title Fotolia
+    link(rel='stylesheet', href='/stylesheets/profile_style.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(href='http://fonts.googleapis.com/css?family=Aladin&subset=latin,latin-ext' rel='stylesheet' type='text/css')
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css")
+  body
+    #nav
+        ul
+          li 
+            a(href="/profile" id="hire") mój profil
+          li
+            a(href="/photos") zdjęcia
+          li
+            a(href="/liked-you") lubią cię
+          li
+            a(href="/message") wiadomości
+          li
+            a(href="/you-favourite") twoi ulubieni
+          li
+            a(href="/settings") ustawienia
+          li
+            a(href="/logout") wyloguj
+          li
+            h1 Fotolia
+    #box
+      if profile=="main"
+        #container
+            #profile_container
+                p Twój profil
+                div.first
+                    div#profile_picture(style=photography)
+                    p.nick=user.nick
+                    p="o sobie: "+user.about
+                div
+                    ul
+                        li
+                            div(title="komentarze") 
+                                div#comments
+                                  i(class="fa fa-comment-o" aria-hidden="true")
+                                p=comments
+                        li
+                            div(title="lubią cię")
+                                div#liked-you 
+                                  i(class="fa fa-thumbs-o-up" aria-hidden="true")
+                                p=like
+                        li 
+                            div(title="twoi ulubieni")
+                                div#you-favourite
+                                  i(class="fa fa-heart-o" aria-hidden="true")              
+                                p=favorite
+            #photo_container 
+                h1 Losowe komentarze
+                -if(random_comments)
+                  -var photo1='background-image:  url("data:image/png;base64,'+random_comments[0].photo+'"); background-position: center; background-repeat: no-repeat; background-size: cover;';
+                  -var photo2='background-image:  url("data:image/png;base64,'+random_comments[1].photo+'"); background-position: center; background-repeat: no-repeat; background-size: cover;';
+                  -var photo3='background-image:  url("data:image/png;base64,'+random_comments[2].photo+'"); background-position: center; background-repeat: no-repeat; background-size: cover;';
+                  div 
+                      div#picture1(style=photo1)
+                      p#komentarz1.
+                       #{random_comments[0].comment}
+                  div 
+                      div#picture2(style=photo2)
+                      p#komentarz2.
+                       #{random_comments[1].comment}
+                  div 
+                      div#picture3(style=photo3)
+                      p#komentarz3.
+                       #{random_comments[2].comment}
+      else 
+        #container
+            #profile_container
+                div.first
+                    div#profile_picture(style=photography)
+                    p.nick=user.nick
+                    p="o sobie: "+user.about
+                div(style="bottom: -80px;")
+                    ul
+                        li
+                            div(title="komentarze") 
+                                div#comments
+                                  i(class="fa fa-comment-o" aria-hidden="true")
+                                p=comments
+                        li
+                            div(title="lubią użytkownika")
+                                div#liked-you 
+                                  i(class="fa fa-thumbs-o-up" aria-hidden="true")
+                                p=like
+                        li 
+                            div(title="ulubieni użytkownika")
+                                div#you-favourite
+                                  i(class="fa fa-heart-o" aria-hidden="true")              
+                                p=favorite
+          
+            #menu
+              ul
+                  li
+                      div(title="wyślij wiadomość" ) 
+                          button#message
+                            i(class="fa fa-envelope" aria-hidden="true")
+                  li
+                      div(title="polub")
+                          button#liked
+                            i(class="fa fa-thumbs-up" aria-hidden="true") 
+                  li
+                      div(title="galeria")
+                          button#gallerybutton(onclick="window.location.href='gallery?id="+user.id_user+"'")
+                            i(class="fa fa-picture-o " aria-hidden="true") 
+            
+                               
+            #photo_container 
+                h1 Najnowsze Zdjęcia
+                #gallery
+                  -for(var i=0; i<newphotos.length && i<6;i++){
+                    -var image = 'background-image:  url("data:image/png;base64,'+newphotos[i].buffer+'"); background-position: center; background-repeat: no-repeat; background-size: cover;';
+                    -var link = "/show?q="+newphotos[i].id_photo;
+                    a.photo(href=link style=image)
+                  -}
+
+      #random_photo
+          div#arrow1.arrow
+            i(class="fa fa-arrow-up" aria-hidden="true")
+          div#random_box
+            div#photos
+              -for (var i =0; i<photos.length; i++){
+                      -var image = 'background-image:  url("data:image/png;base64,'+photos[i].buffer+'"); background-position: center; background-repeat: no-repeat; background-size: cover;';
+                      -var link = "/profile?q="+photos[i].id_user;
+                      a(href=link style=image)
+              -}
+          div#arrow2.arrow
+            i(class="fa fa-arrow-down" aria-hidden="true")
+        
+    #footer
+        a(href="/O_Nas") O Nas
+        a(href="/Regulamin") Regulamin
+        a(href="/Cookies") Polityka plików cookies
+        a(href="/Kontakt_Pomoc") Kontakt i pomoc
+        
+    #messagecontainer.transparent.frame
+        button.exit#exit1
+            p X
+        div
+          form(method="post", action="", id="form")
+            input(type="text", name="title", placeholder="Tytuł wiadomości")
+          textarea(form="form", name="text", placeholder="Treść wiadomości")
+          button#ok.button Wyślij
+  script(src="/javascripts/profile.js" type="text/javascript")   
+  

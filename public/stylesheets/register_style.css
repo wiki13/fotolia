@@ -1,0 +1,161 @@
+h1{
+    position: relative;
+    width: auto;
+    height: auto;
+    font-family: 'Aladin', sans-serif;
+    font-size: 80px;
+    color: #fa6f57;
+    border-bottom: 2px;
+    text-shadow: 5px 5px 5px #000;
+    margin: 50px;
+}
+
+#title{
+   border-style: solid;
+   border-color: #000;
+   border-width: 0px 0px 5px 0px;
+   height: 100px;
+   width: 90%;
+   margin:auto;
+}
+
+#container {
+  position: absolute;
+  border-top: 5px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  border-style: solid;
+  border-color: #fa6f57;
+  width:800px;
+  height: 500px;
+  margin: auto;
+  top:0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #fff;
+}
+#container>div>p{
+  color: #fa6f57;
+  font-size: 30px;
+  font-family: monospace;
+  font-weight: 900;
+  margin-left: 20px;
+}
+
+#container>div>div{
+  position: absolute;
+  top:30px;
+  right: 20px;
+  background-color: #4c4c4c;
+  border-radius: 20px;
+  width: 170px;
+  height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 40px;
+}
+#container>div>div>a{
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-family: monospace;
+  font-weight: 900;
+}
+
+#container>div>div:hover{
+  background-color: #353535;
+}
+
+#container>div>div:active{
+  background-color: #1f1f1f;
+}
+
+#container>form{
+    position: relative;
+    top:0px;
+    text-align: center;
+}
+
+#container>form>div>input{
+  position: absolute;
+  border: 1px solid #e9e9e9;
+  background-color: #f2f2f3;
+  height:40px;
+  width: 40%;
+  margin: 20px;
+  padding: 5px;
+}
+
+#container>form>div>input[name="login"]{
+  left: 0;
+  top:25px;
+}
+
+#container>form>div>input[name="password"]{
+  left: 0;
+  top:100px;
+}
+
+#container>form>div>input[name="email"]{
+  left: 0;
+  top:175px;
+}
+
+#container>form>div>input[name="nick"]{
+  left: 0;
+  top:250px;
+}
+
+#container>form>div>input[name="aboutyourself"]{
+  height: 100px;
+  right: 0;
+  top:125px;
+}
+
+#container>form>div>p{
+  position: absolute;
+  right: 150px;
+  top:25px;
+  position: absolute;
+  color: #797676;
+  font-size: 15px;
+  font-family: monospace;
+  font-weight: 900;
+}
+
+#container>form>div>input[name="picture"]{
+  right: 0;
+  top:50px;
+}
+
+
+
+button{
+  position: absolute;
+  border: 1px solid #e9e9e9;
+  background-color: #fb8470;
+  width: 150px;
+  height:50px;
+  color: #fff;
+  font-size: 18px;
+  font-family: monospace;
+  font-weight: 900;
+  top:400px;
+  right:50px;
+  padding: 5px;
+}
+
+button:hover{
+    background-color:#fa7d67;
+}
+
+#container>form>input[type="submit"]:active{
+  background-color: #fa6f57;
+}
+
+#container>p{
+  color: red;
+  margin-left: 50px;
+}

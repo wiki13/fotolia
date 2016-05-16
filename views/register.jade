@@ -1,0 +1,34 @@
+doctype html
+html
+  head
+    title Fotolia
+    script(src='/javascripts/v_002.js')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/register_style.css')
+    link(href='http://fonts.googleapis.com/css?family=Aladin&subset=latin,latin-ext' rel='stylesheet' type='text/css')
+  body
+      div#title
+          h1 Fotolia
+      #container
+          div
+              p Panel Rejestracji
+              div
+                  a(id="Register" href="/login" ) > Zaloguj
+          form(method="post", action="", enctype="multipart/form-data")
+              div
+                  input(type="text", name="login", placeholder="Nazwa użytkownika")
+                  input(type="password", name="password",placeholder="Hasło")
+                  input(type="mail", name="email",placeholder="Twój@mail.com")
+              div
+                  input(type="text", name="nick",placeholder="Twój nick")
+                  input(type="text", name="aboutyourself",placeholder="krótko o sobie")
+                  p Twoje zdjęcie
+                  input(type="file", name="picture", multiple) 
+          button(onclick="przetwarzaj_dane();") Zarejestruj
+          if error
+              p=error
+      #footer
+          a(href="/O_Nas") O Nas
+          a(href="/Regulamin") Regulamin
+          a(href="/Cookies") Polityka plików cookies
+          a(href="/Kontakt_Pomoc") Kontakt i pomoc

@@ -1,0 +1,243 @@
+#container {
+  position: absolute;
+  border-top: 5px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  border-style: solid;
+  border-color: #fa6f57;
+  width:800px;
+  height: 700px;
+  margin: auto;
+  top:0;
+  bottom: 10px;
+  right: 0;
+  left: 0;
+  background-color: #fff;
+}
+
+#container>h1 {
+  color: #fa6f57;
+  font-size: 30px;
+  font-family: monospace;
+  font-weight: 900;
+  margin-left: 20px;
+}
+
+#box{
+  position: relative;
+  background-color: #f2f2f3;
+  border: 1px solid #e6e6e6;
+  margin: 20px;
+  height: 86%;
+}
+
+
+#messages_container{
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 93% ;
+  width: 35% ;
+  margin: 20px;
+  left:0;
+  top:0;
+  overflow: scroll;
+}
+
+#messages_container>div{
+  position: relative;
+  background-color: #fa7d67;
+  width: 90%;
+  height: 15%;
+  right: 0;
+  left: 0;
+  margin-top: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: inherit;
+  border: solid 2px #e95e45;
+  text-align: center;
+}
+
+#messages_container>div:hover{
+  background-color: #fa6f57;
+}
+
+
+#messages_container>div>a{
+  color: #fff;
+  font-size: 20px;
+  font-family: monospace;
+  font-weight: 900;
+}
+
+#messages_container>div>a:hover{
+  color: #000;
+}
+
+#messages_container>div>p{
+  color: #fff;
+  font-size: 18px;
+  font-family: monospace;
+}
+
+#message{
+    position: absolute;
+    background-color: white;
+    width: 55%;
+    height: 93%;
+    right:0;
+    top:0;
+    margin: 20px;
+
+}
+
+#message>a{
+  color: #fa6f57;
+  font-size: 30px;
+  font-family: monospace;
+  font-weight: 900;
+  margin-left: 20px;
+  text-decoration: none;
+}
+#message p{
+  margin: 20px;
+}
+.text {
+  height: 70%;
+  overflow: scroll;
+}
+
+#date{
+  position: absolute;
+  bottom: 80px;
+  left: 20px;
+}
+
+button{
+  position: absolute;
+  background-color: #4c4c4c;
+  border-radius: 20%;
+  padding: 10px;
+  border: none;
+}
+
+button:hover{
+  background-color: #5e5b5b;
+}
+button>a{
+  color: #fff;
+  font-size: 20px;
+  font-family: monospace;
+  font-weight: 900;
+  margin: 20px;
+  text-decoration: none;
+  top:20px;
+}
+#button1{
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+#button2{
+  position: absolute;
+  bottom: 20px;
+  right: 170px;
+}
+
+.frame{
+  position: absolute;
+  margin: auto;
+  top:0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.frame>div{
+  position: absolute;
+  border-top: 5px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  border-style: solid;
+  border-color: #fa6f57;
+  width:500px;
+  height: 300px;
+  margin: auto;
+  top:0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #fff;
+  text-align: center;
+}
+
+.frame>div>form>input,.frame>div>textarea{
+  position: absolute;
+  border: 1px solid #e9e9e9;
+  background-color: #f2f2f3;
+  height:40px;
+  width: 70%;
+  margin: 20px;
+  padding: 5px;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+
+.frame>div>form>input[name="title"]{
+  top:15%;
+}
+.frame>div>textarea{
+  top:37%;
+  height: 100px;
+}
+
+#send{
+  position: absolute;
+  color: #fff;
+  font-size: 20px;
+  font-family: monospace;
+  font-weight: 900;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.exit{
+  position: absolute;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border: 5px solid #fa6f57;
+  background-color: #fff;
+  z-index: 99999;
+  margin: auto;
+  top:0;
+  bottom: 300px;
+  right: 0;
+  left: 500px;
+}
+
+.exit>p{
+  position: relative;
+  font-size: 40px;
+  color: #fa6f57;
+  top:-60px;
+  right: 2px;
+
+}
+
+.exit:hover{
+  background-color: #fa6f57;
+}
+
+.exit:hover>p{
+  color: #fff;
+}
