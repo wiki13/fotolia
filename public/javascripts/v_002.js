@@ -3,7 +3,15 @@ function przetwarzaj_dane (){
       var formularz=document.forms[0];
       var napis="";
       var wzorMaila = new RegExp("^[0-9a-z_.-]+@[0-9a-z.-]+\.[a-z]{2,3}$","i");
-      var filename = new RegExp("^[A-Z0-9\-][A-Z0-9\-]*.png$","i");
+      var regfilename = new RegExp("^[a-zA-Z0-9\-][a-zA-Z0-9\-]*.png$");
+      var fullPath = formularz.picture.value;
+
+
+    var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+    var filename = fullPath.substring(startIndex);
+    if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+        filename = filename.substring(1);
+    }
 
       if (formularz.login.value == "" || formularz.login.value.length<6 || formularz.login.value.length>20 ){
         napis += "login (nie może mieć mniej znaków niż 6 i więcej niż 20)\n"
@@ -26,7 +34,7 @@ function przetwarzaj_dane (){
         error=true;
       }
 
-      if (filename.test(formularz.picture.value)!= true ){
+      if (regfilename.test(filename)!= true ){
         napis += "plik musi być w formacie png i nie może zaiwerać żadnych znaków specjalnych \n"
         error=true;
       }
