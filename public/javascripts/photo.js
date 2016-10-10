@@ -19,13 +19,19 @@ function sendPhoto (){
       var formularz=document.forms[1];
       var napis="";
       var extensions = "png";
-      var filename = new RegExp("^[A-Z0-9][A-Z0-9]*.png$","i");
+      var regfilename = new RegExp("^[A-Za-z0-9][A-Za-z0-9]*.png$","i");
+      var fullPath = formularz.picture.value;
+      var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+      var filename = fullPath.substring(startIndex);
+      if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+          filename = filename.substring(1);
+      }
 
       if (formularz.description.value == "" || formularz.description.value.length<4 || formularz.description.value.length>20 ){
         napis += "tytuł nie może mieć mniej znaków niż 4 i więcej niż 15\n"
         error=true;
       }
-      if (filename.test(formularz.picture.value)!= true ){
+      if (regfilename.test(filename)!= true ){
         napis += "plik musi być w formacie png i nie może zaiwerać żadnych znaków specjalnych \n"
         error=true;
       }
